@@ -1,4 +1,11 @@
-FROM docker/whalesay:latest
-LABEL Name=sliity4microservice2022 Version=0.0.1
-RUN apt-get -y update && apt-get install -y fortunes
-CMD ["sh", "-c", "/usr/games/fortune -a | cowsay"]
+FROM node:18-alpine3.14
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm i
+
+EXPOSE 3000
+
+CMD ["node", "index.js"]
